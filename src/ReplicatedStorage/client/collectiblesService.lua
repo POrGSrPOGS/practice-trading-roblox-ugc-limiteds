@@ -1,18 +1,9 @@
 local collectiblesService = {}
 
 local avatarEditorService = game:GetService("AvatarEditorService")
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local remotes = replicatedStorage.remotes
-
-local itemsLoaded = 0
-local limitedsLoaded = 0
-
-local function getItemId(item)
-	return item.Id
-end
 
 local function isUGC(collectible)
-	return collectible.Creator ~= "Roblox"
+	return collectible.CreatorName ~= "Roblox"
 end
 
 function collectiblesService.getUGCs(collectibles)

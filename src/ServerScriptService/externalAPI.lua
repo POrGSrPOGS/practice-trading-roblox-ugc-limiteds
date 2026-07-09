@@ -5,7 +5,6 @@ local serverScriptService = game:GetService("ServerScriptService")
 local httpService = game:GetService("HttpService")
 
 local remotes = replicatedStorage.remotes
-
 local rolimons = require(serverScriptService.rolimons)
 
 local WORKER_TOKEN = httpService:GetSecret("WORKER_TOKEN")
@@ -106,13 +105,12 @@ local function getAnalytics(player, ids)
 		warn(("getRAP: %d item(s) never resolved after %d attempts"):format(#remainingIds, MAX_RETRIES))
 	end
 
+	print(totalRAPDetails)
 	return totalRAPDetails
 end
 
 function api.initialise()
 	remotes.getAnalytics.OnServerInvoke = getAnalytics
-	
-	print(getAnalytics(nil, {88301569124347}))
 end
 
 return api
