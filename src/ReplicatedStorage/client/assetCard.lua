@@ -14,7 +14,8 @@ local playerGui = player.PlayerGui
 
 local shopGui = playerGui:WaitForChild("shopGui")
 local shopFrame = shopGui:WaitForChild("frame")
-local shopScrollingFrame = shopFrame:WaitForChild("scrollingFrame")
+local exploreFrame = shopFrame:WaitForChild("explore")
+local shopScrollingFrame = exploreFrame:WaitForChild("scrollingFrame")
 local analyticsFrame = shopFrame:WaitForChild("analytics")
 
 local assetTemplate = shopScrollingFrame:WaitForChild("assetTemplate")
@@ -23,6 +24,8 @@ assetTemplate.Parent = ui
 analyticsFrame.Visible = false
 
 local currentlyAnalysedAsset = nil
+
+local MAX_NAME_LENGTH = 15
 
 
 local function createCard()
@@ -91,13 +94,13 @@ function assetCard:linkAnalyticsButton()
 
 		currentlyAnalysedAsset = self.itemDetails.Id
 
-		analyticsDisplay.showLoadingScreen()
+		analyticsDisplay.startLoadingScreen()
 
 		local analytics = self:getAnalytics()
 
 		analyticsDisplay.show(analytics)
 
-		analyticsDisplay.hideLoadingScreen()
+		analyticsDisplay.stopLoadingScreen()
 	end)
 end
 
@@ -110,8 +113,14 @@ end
 
 
 function assetCard:getName()
-	return self.itemDetails.Name
-		or "Unknown"
+	local name = self.itemDetails.Name
+	local shortened = string.sub(name, 1, MAX_NAME_LENGTH)
+
+	if shortened ~= name then
+		shortened = shortened .. "..."
+	end
+
+	return shortened
 end
 
 

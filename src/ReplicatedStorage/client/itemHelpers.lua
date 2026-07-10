@@ -11,6 +11,10 @@ export type itemType = {
     ItemType: Enum.MarketplaceProductType?,
 }
 
+export type itemsType = {
+    itemType
+}
+
 function itemHelpers.getID(item: itemType) : number
     local id = item.Id    
     return id

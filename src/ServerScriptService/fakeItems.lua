@@ -7,7 +7,7 @@ local function invest(player, id)
 	
 end
 
-function fakeItems.init()
+function fakeItems.initialise()
 	remotes.invest.OnServerEvent:Connect(invest)
 end
 

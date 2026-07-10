@@ -1,4 +1,5 @@
-local serverScriptService = game:GetService("ServerScriptService")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local client = replicatedStorage.client
 
 local function initalise(descendant)
 	if not descendant:IsA("ModuleScript") then return end
@@ -16,6 +17,6 @@ local function initalise(descendant)
 	end
 end
 
-for _, descendant in serverScriptService:GetDescendants() do
+for _, descendant in client:GetDescendants() do
 	initalise(descendant)
 end

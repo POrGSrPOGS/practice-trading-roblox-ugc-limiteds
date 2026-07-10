@@ -77,20 +77,23 @@ local function clearAnalyticsFields()
     setValue(
         "originalPrice"
     )
-    
+
 end
 
-function analyticsDisplay.showLoadingScreen()
+local function setLoadingFrameVisibility(visibility)
+    local loadingFrame = analyticsFrame.loading
+    loadingFrame.Visible = visibility
+end
+
+function analyticsDisplay.startLoadingScreen()
     clearAnalyticsFields()
     analyticsFrame.Visible = true
 
-	local loadingFrame = analyticsFrame.loading
-	loadingFrame.Visible = true
+	setLoadingFrameVisibility(true)
 end
 
-function analyticsDisplay.hideLoadingScreen()
-	local loadingFrame = analyticsFrame.loading
-	loadingFrame.Visible = false
+function analyticsDisplay.stopLoadingScreen()
+	setLoadingFrameVisibility(false)
 end
 
 function analyticsDisplay.show(analytics : analyticsHelpers.analyticsType)
